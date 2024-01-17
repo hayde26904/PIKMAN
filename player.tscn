@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://diju0t4gabqo3"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_wyugn"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ynsqx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iwgln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uk0d"]
+size = Vector2(45, 45)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_wyugn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ynsqx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_iwgln")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 13, 7.827)
+fov = 100.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SelectorBox" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 45.0
+color = Color(0.0666667, 0.494118, 1, 0.490196)
+
+[node name="Area2D" type="Area2D" parent="Control/SelectorBox"]
+position = Vector2(22.5, 22.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/SelectorBox/Area2D"]
+position = Vector2(0, 0.5)
+scale = Vector2(1e-05, 1e-05)
+shape = SubResource("RectangleShape2D_2uk0d")
+
+[connection signal="area_entered" from="Control/SelectorBox/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Control/SelectorBox/Area2D" to="." method="_on_area_2d_body_entered"]

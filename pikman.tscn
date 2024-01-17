@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://sk3tiicmkp5c"]
+
+[ext_resource type="Script" path="res://pikman.gd" id="1_e23l7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_doh5c"]
+albedo_color = Color(0.34902, 0.741176, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wwalf"]
+material = SubResource("StandardMaterial3D_doh5c")
+radius = 0.2
+height = 0.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uubic"]
+radius = 0.2
+height = 0.8
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ws3md"]
+
+[node name="Pikman" type="CharacterBody3D"]
+script = ExtResource("1_e23l7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_wwalf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_uubic")
+
+[node name="Area2D" type="Area2D" parent="." groups=["pikman"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_ws3md")

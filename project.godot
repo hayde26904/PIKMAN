@@ -60,4 +60,9 @@ select={
 
 [physics]
 
+3d/physics_engine="GodotPhysics3D"
 3d/default_gravity=15.0
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=2

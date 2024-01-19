@@ -11,7 +11,6 @@ var mouseVel = Vector2.ZERO
 var mousePercentage = Vector2.ZERO
 
 @export var lookSpd = 1
-
 var minFov = 70
 var maxFov = 110
 
@@ -37,7 +36,7 @@ func _input(event):
 		pass
 
 func _ready():
-	pass
+	position.y = (x_bounds.y - x_bounds.x) / 4
 
 
 func _process(delta):
@@ -117,11 +116,8 @@ func shoot_mouse_ray():
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group('pikman') and selecting:
-		print('esh')
 		var pman = area.get_parent()
-		var new_material = StandardMaterial3D.new()
-		new_material.albedo_color = Color(1,0,0)
-		pman.get_node("MeshInstance3D").set_surface_override_material(0, new_material)
 		
-		party.append(pman)
-		pman.following = true
+		if not pman.selected:
+			party.append(pman)
+			pman.selected = true

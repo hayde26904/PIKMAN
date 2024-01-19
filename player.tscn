@@ -1,26 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://diju0t4gabqo3"]
+[gd_scene load_steps=3 format=3 uid="uid://diju0t4gabqo3"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_wyugn"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ynsqx"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iwgln"]
+[ext_resource type="Script" path="res://camera.gd" id="2_ovtbq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uk0d"]
 size = Vector2(45, 45)
 
-[node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_wyugn")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_ynsqx")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_iwgln")
-
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Player" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 13, 7.827)
 fov = 100.0
+script = ExtResource("2_ovtbq")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -44,4 +32,3 @@ scale = Vector2(1e-05, 1e-05)
 shape = SubResource("RectangleShape2D_2uk0d")
 
 [connection signal="area_entered" from="Control/SelectorBox/Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Control/SelectorBox/Area2D" to="." method="_on_area_2d_body_entered"]

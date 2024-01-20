@@ -1,7 +1,7 @@
 extends Camera3D
 
 @onready var rootNode = get_tree().get_root().get_child(0)
-@onready var screenSize = DisplayServer.screen_get_size()
+@onready var screenSize = get_window().size
 @onready var x_bounds = rootNode.x_bounds
 @onready var z_bounds = rootNode.z_bounds
 
@@ -12,7 +12,7 @@ var mousePercentage = Vector2.ZERO
 
 @export var lookSpd = 1
 var minFov = 70
-var maxFov = 110
+var maxFov = 120
 
 @export var zoomAmount = 30
 
@@ -24,7 +24,8 @@ var maxFov = 110
 var selecting = false
 var selectorBoxStartPos = Vector2.ZERO
 
-var party = []
+var pman_in_selector_box = []
+var controlling = []
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -37,7 +38,6 @@ func _input(event):
 
 func _ready():
 	position.y = (x_bounds.y - x_bounds.x) / 4
-
 
 func _process(delta):
 	var input_dir = Input.get_vector('left','right','forward','backward')
@@ -77,6 +77,9 @@ func handle_selector():
 		selecting = false
 		selectorBox.hide()
 		
+		for i in pman_in_selector_box:
+			controlling.append(i)
+			i.is_selected = true
 	
 	if selecting and not mouseVel == Vector2.ZERO:
 		
@@ -117,7 +120,10 @@ func shoot_mouse_ray():
 func _on_area_2d_area_entered(area):
 	if area.is_in_group('pikman') and selecting:
 		var pman = area.get_parent()
-		
-		if not pman.selected:
-			party.append(pman)
-			pman.selected = true
+		pman_in_selector_box.append(pman)
+
+
+func _on_area_2d_area_exited(area):
+	if area.is_in_group('pikman') and selecting:
+		var pman = area.get_parent()
+		pman_in_selector_box.erase(pman)

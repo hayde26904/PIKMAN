@@ -1,12 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://sk3tiicmkp5c"]
+[gd_scene load_steps=8 format=3 uid="uid://sk3tiicmkp5c"]
 
 [ext_resource type="Script" path="res://pikman.gd" id="1_e23l7"]
+[ext_resource type="Shader" path="res://outline.gdshader" id="2_rmle6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_doh5c"]
-albedo_color = Color(0.34902, 0.741176, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ao4a0"]
+render_priority = 0
+shader = ExtResource("2_rmle6")
+shader_parameter/outline_color = Color(1, 1, 1, 0.607843)
+shader_parameter/outline_width = 2.0
+shader_parameter/outline_enabled = true
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_wwalf"]
-material = SubResource("StandardMaterial3D_doh5c")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35b2t"]
+next_pass = SubResource("ShaderMaterial_ao4a0")
+albedo_color = Color(0.152941, 0.690196, 0.980392, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6c8jq"]
+lightmap_size_hint = Vector2i(27, 26)
+material = SubResource("StandardMaterial3D_35b2t")
 radius = 0.8
 height = 4.0
 
@@ -20,7 +30,8 @@ height = 4.0
 script = ExtResource("1_e23l7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_wwalf")
+unique_name_in_owner = true
+mesh = SubResource("CapsuleMesh_6c8jq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_uubic")

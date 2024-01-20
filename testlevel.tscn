@@ -1,77 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3cqo1ntv46tk"]
+[gd_scene load_steps=9 format=3 uid="uid://kkcahg2ce712"]
 
-[ext_resource type="Script" path="res://game.gd" id="1_8o5cy"]
-[ext_resource type="Texture2D" uid="uid://pjkudmgv0xmd" path="res://texture_01_2.png" id="1_jsqpj"]
-[ext_resource type="PackedScene" uid="uid://diju0t4gabqo3" path="res://player.tscn" id="2_8wq3s"]
-[ext_resource type="PackedScene" uid="uid://sk3tiicmkp5c" path="res://pikman.tscn" id="4_jwc0r"]
+[ext_resource type="Script" path="res://game.gd" id="1_eexq0"]
+[ext_resource type="Texture2D" uid="uid://k10ysi07t81q" path="res://templategrid_albedo.png" id="2_p0ojq"]
+[ext_resource type="PackedScene" uid="uid://diju0t4gabqo3" path="res://camera.tscn" id="3_mf0om"]
+[ext_resource type="PackedScene" uid="uid://sk3tiicmkp5c" path="res://pikman.tscn" id="4_q5hfb"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tktll"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m2bk8"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_qwr1k"]
-sky_material = SubResource("ProceduralSkyMaterial_tktll")
+[sub_resource type="Sky" id="Sky_bs48w"]
+sky_material = SubResource("ProceduralSkyMaterial_m2bk8")
 
-[sub_resource type="Environment" id="Environment_hmblc"]
+[sub_resource type="Environment" id="Environment_igen3"]
 background_mode = 2
-sky = SubResource("Sky_qwr1k")
+sky = SubResource("Sky_bs48w")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tur0l"]
-albedo_texture = ExtResource("1_jsqpj")
-heightmap_scale = -16.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osd1a"]
+albedo_texture = ExtResource("2_p0ojq")
 uv1_scale = Vector3(5, 5, 5)
-uv2_scale = Vector3(5, 5, 5)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_8o5cy")
-x_bounds = Vector2(-100, 100)
-z_bounds = Vector2(-100, 100)
+script = ExtResource("1_eexq0")
+x_bounds = Vector2(-50, 50)
+z_bounds = Vector2(-50, 50)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hmblc")
+environment = SubResource("Environment_igen3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
-size = Vector3(200, 1, 200)
-material = SubResource("StandardMaterial3D_tur0l")
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_osd1a")
 
-[node name="Player" parent="." instance=ExtResource("2_8wq3s")]
-transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 25, 0)
+[node name="Player" parent="." instance=ExtResource("3_mf0om")]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 
-[node name="Pikmen" type="Node" parent="."]
-
-[node name="Pikman4" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7039, 2.45807, 13.8502)
-
-[node name="Pikman" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80356, 2.15253, 7.91704)
-
-[node name="Pikman2" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0515, 2.48548, -13.1305)
-
-[node name="Pikman3" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.3171, 2.28832, -18.7385)
-
-[node name="Pikman5" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 29)
-
-[node name="Pikman6" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57952, 2.00338, 20.3346)
-
-[node name="Pikman7" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2753, 2.80441, 17.5887)
-
-[node name="Pikman8" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1061, 1.99672, 18.8666)
-
-[node name="Pikman9" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.73659, 2.58648, 14.4455)
-
-[node name="Pikman10" parent="Pikmen" instance=ExtResource("4_jwc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4429, 2.27722, -0.885708)
+[node name="Pikman" parent="." instance=ExtResource("4_q5hfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2612, 9.40436, 11.1705)

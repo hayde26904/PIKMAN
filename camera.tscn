@@ -5,9 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uk0d"]
 size = Vector2(45, 45)
 
-[node name="Player" type="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 13, 7.827)
-fov = 100.0
+[node name="Camera" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 20, 8)
+fov = 130.0
 script = ExtResource("2_ovtbq")
 
 [node name="Control" type="Control" parent="."]
@@ -32,3 +32,4 @@ scale = Vector2(1e-05, 1e-05)
 shape = SubResource("RectangleShape2D_2uk0d")
 
 [connection signal="area_entered" from="Control/SelectorBox/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Control/SelectorBox/Area2D" to="." method="_on_area_2d_area_exited"]

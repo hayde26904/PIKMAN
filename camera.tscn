@@ -6,8 +6,7 @@
 size = Vector2(45, 45)
 
 [node name="Camera" type="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 20, 8)
-fov = 130.0
+transform = Transform3D(1, 0, 0, 0, 0.0100008, 0.99995, 0, -0.99995, 0.0100008, 0, 10.042, 0)
 script = ExtResource("2_ovtbq")
 
 [node name="Control" type="Control" parent="."]

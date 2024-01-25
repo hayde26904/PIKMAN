@@ -37,7 +37,7 @@ func _input(event):
 		pass
 
 func _ready():
-	position.y = (x_bounds.y - x_bounds.x) / 4
+	position.y = (x_bounds.y - x_bounds.x)/2
 
 func _process(delta):
 	var input_dir = Input.get_vector('left','right','forward','backward')
@@ -49,7 +49,7 @@ func _process(delta):
 	mousePercentage = Vector2(mousePos.x/screenSize.x, mousePos.y/screenSize.y).snapped(Vector2(0.01,0.01))
 	
 	var newCameraX = (x_bounds.y * mousePercentage.x) + x_bounds.x/2
-	var newCameraZ = (z_bounds.y * mousePercentage.y)# + z_bounds.x/2
+	var newCameraZ = (z_bounds.y * mousePercentage.y)# - z_bounds.x/2
 	
 	if not selecting:
 		position.x = lerpf(position.x, newCameraX, 0.1)

@@ -24,8 +24,8 @@ uv1_scale = Vector3(5, 5, 5)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_eexq0")
-x_bounds = Vector2(-50, 50)
-z_bounds = Vector2(-50, 50)
+x_bounds = Vector2(-100, 100)
+z_bounds = Vector2(-100, 100)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_igen3")
@@ -36,7 +36,7 @@ shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
-size = Vector3(100, 1, 100)
+size = Vector3(200, 1, 200)
 material = SubResource("StandardMaterial3D_osd1a")
 
 [node name="Player" parent="." instance=ExtResource("3_mf0om")]
@@ -44,3 +44,21 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 
 [node name="Pikman" parent="." instance=ExtResource("4_q5hfb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2612, 9.40436, 11.1705)
+
+[node name="Pikman2" parent="." instance=ExtResource("4_q5hfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7602, 10.0186, 4.10156)
+
+[node name="Pikman3" parent="." instance=ExtResource("4_q5hfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.01547, 10.0186, -13.9402)
+
+[node name="Pikman4" parent="." instance=ExtResource("4_q5hfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2019, 10.0186, -7.57004)
+
+[node name="Pikman5" parent="." instance=ExtResource("4_q5hfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.4869, 10.0186, -3.43854)
+
+[node name="Pikman6" parent="." instance=ExtResource("4_q5hfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9948, 10.0186, -16.6571)
+
+[node name="Pikman7" parent="." instance=ExtResource("4_q5hfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.8008, 10.0186, -6.37507)
